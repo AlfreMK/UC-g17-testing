@@ -1,5 +1,5 @@
-# from model import *
-from .model import *
+from model import *
+# from .model import *
 # visitador que cuenta cuantos nodo de tipo number existen en el arbol
 
 

@@ -131,10 +131,31 @@ class TestParser(unittest.TestCase):
         ast = parser("5.4")
         result = ast.eval()
         self.assertEqual(result, 5.4)
-    def test_eval_15(self):
+    def test_eval_18(self):
         ast = parser("(++ (+ 1.5 1.5))")
         result = ast.eval()
         self.assertEqual(result, 4.0)
+    def test_eval_19(self):
+        ast = parser(".4")
+        result = ast.eval()
+        self.assertEqual(result, 0.4)
+    def test_eval_20(self):
+        ast = AdditionNode(PlusPlusNode(NumberNode(4343.212)),MinusMinusNode(NumberNode(402.1)))
+        self.assertEqual(ast.to_string(), "(+ (++ 4343.212) (-- 402.1))")
+    def test_eval_21(self):
+        ast = NumberNode(-42.5)
+        result = ast.eval()
+        self.assertEqual(result, -42.5)
+    def test_eval_22(self):
+        ast = AdditionNode(PlusPlusNode(NumberNode(-4343.212)),MinusMinusNode(NumberNode(-402.1)))
+        self.assertEqual(ast.to_string(), "(+ (++ -4343.212) (-- -402.1))")
+    def test_eval_23(self):
+        ast = AdditionNode(PlusPlusNode(NumberNode(-4343.212)),MinusMinusNode(NumberNode(402)))
+        self.assertEqual(ast.to_string(), "(+ (++ -4343.212) (-- 402))")
+    def test_eval_24(self):
+        ast = MinusMinusNode(AdditionNode(PlusPlusNode(NumberNode(-4343.212)),MinusMinusNode(NumberNode(402))))
+        self.assertEqual(ast.to_string(), "(-- (+ (++ -4343.212) (-- 402)))")
+    
     
 if __name__ == '__main__':
     unittest.main()
