@@ -1,15 +1,15 @@
-from model import *
-# from .model import *
+# from model import *
+from .model import *
 
 # parser super sencillo y un poco feo
 def parser(stringCode):
     end = len(stringCode)-1
     if stringCode[0] != '(':
         # es atomico, asumimos que es un numero
-        if stringCode[0].isnumeric():
-            return NumberNode(int(stringCode[0]))
+        if stringCode.isnumeric():
+            return NumberNode(int(stringCode))
         else:
-            raise Exception("Primitive Value " + stringCode[0] + "not supported")
+            raise Exception("Primitive Value " + stringCode + " not supported")
     # sino esta compuesto y es operacion
     stringCode = stringCode[1:len(stringCode)-1]
     # borramos los parentesis del inicio y el final

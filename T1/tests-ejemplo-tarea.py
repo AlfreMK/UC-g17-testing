@@ -50,6 +50,84 @@ class TestParser(unittest.TestCase):
         ast.accept(visitor)
         self.assertEqual(visitor.total(), 1)
 
+    # new tests
+    def test_unary_counter3(self):
+        visitor = UnaryOperatorCounter()
+        ast = parser("(- (+ (+ (++ 1) (++ 1)) (- 2 (-- 3))) (+ (++ 1) (-- 2)))")
+        ast.accept(visitor)
+        self.assertEqual(visitor.total(), 5)
+    def test_eval_1(self):
+        ast = parser("(+ (++ 1) (-- 2))")
+        result = ast.eval()
+        self.assertEqual(result, 3)
+    def test_eval_2(self):
+        ast = parser("(+ (+ (++ 1) (++ 1)) (- 2 (-- 3)))")
+        result = ast.eval()
+        self.assertEqual(result, 4)
+    def test_eval_3(self):
+        ast = parser("(++ (-- (++ (-- (++ (-- (++ (-- 4))))))))")
+        result = ast.eval()
+        self.assertEqual(result, 4)
+    def test_eval_4(self):
+        ast = parser("(+ 1 (++ 3))")
+        result = ast.eval()
+        self.assertEqual(result, 5)
+    def test_eval_5(self):
+        ast = AdditionNode(PlusPlusNode(NumberNode(10)),MinusMinusNode(NumberNode(2)))
+        self.assertEqual(ast.to_string(), "(+ (++ 10) (-- 2))")
+    def test_eval_6(self):
+        ast = parser("(+ (++ 10) (-- 2))")
+        result = ast.eval()
+        self.assertEqual(result, 12)
+    def test_eval_7(self):
+        ast = parser("(+ 11 5)")
+        result = ast.eval()
+        self.assertEqual(result, 16)
+    def test_eval_8(self):
+        ast = parser("(+ (-- 11) 5)")
+        result = ast.eval()
+        self.assertEqual(result, 15)
+    def test_eval_9(self):
+        ast = parser("(+ (-- 105) 302)")
+        result = ast.eval()
+        self.assertEqual(result, 406)
+    def test_eval_10(self):
+        ast = parser("(+ (-- 05) 02)")
+        result = ast.eval()
+        self.assertEqual(result, 6)
+    def test_eval_11(self):
+        ast = parser("(+ (++ 0001) 02)")
+        result = ast.eval()
+        self.assertEqual(result, 4)
+    def test_unary_counter3(self):
+        visitor = UnaryOperatorCounter()
+        ast = parser("(+ (+ (++ 1132) (++ 13232)) (- 2434 (-- 3555)))")
+        ast.accept(visitor)
+        self.assertEqual(visitor.total(), 3)
+    def test_eval_12(self):
+        ast = AdditionNode(PlusPlusNode(NumberNode(4343212)),MinusMinusNode(NumberNode(4021)))
+        self.assertEqual(ast.to_string(), "(+ (++ 4343212) (-- 4021))")
+    def test_eval_12(self):
+        ast = parser("(+ (++ 0000) 000)")
+        result = ast.eval()
+        self.assertEqual(result, 1)
+    def test_eval_13(self):
+        ast = parser("(+ (++ -3) -4)")
+        result = ast.eval()
+        self.assertEqual(result, -6)
+    def test_eval_14(self):
+        ast = parser("-6")
+        result = ast.eval()
+        self.assertEqual(result, -6)
+    def test_eval_15(self):
+        ast = parser("(++ (+ 11 5))")
+        result = ast.eval()
+        self.assertEqual(result, 17)
+    def test_eval_16(self):
+        ast = NumberNode(-42)
+        result = ast.eval()
+        self.assertEqual(result, -42)
+
 
 if __name__ == '__main__':
     unittest.main()
