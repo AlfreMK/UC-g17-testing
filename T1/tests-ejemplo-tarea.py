@@ -127,7 +127,14 @@ class TestParser(unittest.TestCase):
         ast = NumberNode(-42)
         result = ast.eval()
         self.assertEqual(result, -42)
-
-
+    def test_eval_17(self):
+        ast = parser("5.4")
+        result = ast.eval()
+        self.assertEqual(result, 5.4)
+    def test_eval_15(self):
+        ast = parser("(++ (+ 1.5 1.5))")
+        result = ast.eval()
+        self.assertEqual(result, 4.0)
+    
 if __name__ == '__main__':
     unittest.main()

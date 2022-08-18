@@ -6,8 +6,10 @@ def parser(stringCode):
     end = len(stringCode)-1
     if stringCode[0] != '(':
         # es atomico, asumimos que es un numero
-        if stringCode.isnumeric():
-            return NumberNode(int(stringCode))
+        if  (stringCode.isnumeric()
+            or (stringCode[0] == '-' and stringCode[1:].isnumeric())
+            or stringCode.replace('.', '', 1).isnumeric()):
+            return NumberNode(float(stringCode))
         else:
             raise Exception("Primitive Value " + stringCode + " not supported")
     # sino esta compuesto y es operacion
