@@ -24,6 +24,12 @@ def parser(stringCode):
         return AdditionNode(args[0],args[1])
     elif first == "-":
         return SubstractNode(args[0],args[1])
+    ############################################### act2 operadores unarios
+    elif first == "++":
+        return PlusPlusNode(args[0])
+    elif first == "--":
+        return MinusMinusNode(args[0])
+    ###############################################
     else:
         raise Exception("Operation " + first + "not supported")
 
