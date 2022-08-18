@@ -26,3 +26,24 @@ class AdditionCounter(Visitor):
 
     def total(self):
         return self.counter
+
+
+############################################################################### act 4
+# visitador que cuenta cuantos nodo de tipo PlusPlus y MinusMinus existen en el arbol
+class UnaryOperatorCounter(Visitor):
+    def __init__(self):
+        self.counter = 0
+    
+    def visit_PlusPlus(self, node):
+        # nodo compuesto debe propagar la visita
+        node.Node.accept(self)
+        self.counter = self.counter + 1
+    
+    def visit_MinusMinus(self, node):
+        # nodo compuesto debe propagar la visita
+        node.Node.accept(self)
+        self.counter = self.counter + 1
+
+    def total(self):
+        return self.counter
+###############################################################################
