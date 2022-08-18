@@ -161,7 +161,7 @@ class Visitor:
         pass
 
     def visit_PlusPlus(self, node):
-        pass
+        node.Node.accept(self)
 
     def visit_MinusMinus(self, node):
-        pass
+        node.Node.accept(self)
