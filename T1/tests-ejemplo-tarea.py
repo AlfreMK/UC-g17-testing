@@ -1,8 +1,9 @@
 import unittest
-from model import *
-from parser import *
-from metrics import *
-
+from tarea_1.model import *
+from tarea_1.parser import *
+from tarea_1.metrics import *
+# en metrics y parser salta un error de importacion, para solucionarlo se coloca "from .model" en vez de "from model"
+# lo dejo como "from model" pq así nos lo dieron.
 
 class TestParser(unittest.TestCase):
     # test para la tarea

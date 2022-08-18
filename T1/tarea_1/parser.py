@@ -1,5 +1,5 @@
 from model import *
-
+# from .model import *
 
 # parser super sencillo y un poco feo
 def parser(stringCode):
