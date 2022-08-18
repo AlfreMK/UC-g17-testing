@@ -24,6 +24,10 @@ class TestParser(unittest.TestCase):
         ast = parser("(-- 3)")
         result = ast.eval()
         self.assertEqual(result, 2)
+    def test_mm(self):
+        ast1 = MinusMinusNode(NumberNode(2))
+        ast2 = parser("(-- 2)")
+        self.assertEqual(ast1, ast2)
 
     def test_mix(self):
         ast = parser("(+ (++ 1) (++ 1))")
