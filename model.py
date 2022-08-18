@@ -102,6 +102,50 @@ class SubstractNode(BinaryOperatorNode):
         visitor.visit_Substract(self)
 
 
+######################################################### act 1
+# operador unario
+class UnaryOperatorNode(OperatorNode):
+    def __init__(self, Node, sym):
+        super().__init__(sym)
+        self.Node = Node
+
+    def to_string(self):
+        return "(" + self.symbol + " " + self.Node.to_string() + ")"
+
+    def accept(self, visitor):
+        visitor.visit_UnaryOperator(self)
+
+    def __eq__(self, other):
+        if self.__class__ != other.__class__: return False
+        if self.symbol != other.symbol: return False
+        if self.Node != other.Node: return False
+        return True
+
+
+# operador plusplus (suma 1)
+class PlusPlusNode(UnaryOperatorNode):
+    def __init__(self, Node):
+        super(PlusPlusNode, self).__init__(Node, "++")
+
+    def eval(self):
+        return self.Node.eval() + 1
+
+    def accept(self, visitor):
+        visitor.visit_PlusPlus(self)
+
+
+# operador MinusMinus (resta 1)
+class MinusMinusNode(UnaryOperatorNode):
+    def __init__(self, Node):
+        super(MinusMinusNode, self).__init__(Node, "--")
+
+    def eval(self):
+        return self.Node.eval() - 1
+
+    def accept(self, visitor):
+        visitor.visit_MinusMinus(self)
+#########################################################
+
 # visitor
 class Visitor:
     # los nodos computestos deben propagar la visita a los subnodos
