@@ -14,7 +14,18 @@ class AttributeUsageVisitor(WarningNodeVisitor):
     def visit_Attribute(self, node: Attribute):
         if self.initialized.count(node.attr) == 0:
             self.addWarning('UninitilizeAttrWarning', node.lineno, 'attribute '+ node.attr + ' was not initialized')
+
+        #### ACTIVIDAD 1 ####
+        if len(node.attr) == 1:
+            self.addWarning('SuspiciousVariableName', node.lineno, 'attribute '+ node.attr + ' has only one character')
+        
         NodeVisitor.generic_visit(self, node)
+
+    def visit_Name(self, node: Name):
+        if len(node.id) == 1:
+            self.addWarning('SuspiciousVariableName', node.lineno, 'variable '+ node.id + ' has only one character')
+        NodeVisitor.generic_visit(self, node)
+        #####################
 
 
 class UninitialiedAttributeRule(Rule):
@@ -22,3 +33,12 @@ class UninitialiedAttributeRule(Rule):
         visitor = AttributeUsageVisitor()
         visitor.visit(ast)
         return visitor.warningsList()
+
+
+#### ACTIVIDAD 1 ####
+class SuspiciousVariableName(Rule):
+    def analyze(self, ast):
+        visitor = AttributeUsageVisitor()
+        visitor.visit(ast)
+        return self.warningsList
+#####################
