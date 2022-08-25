@@ -4,6 +4,7 @@ from rewriter.rewriter import *
 from rewriter.eval_rewriter import *
 from rewriter.if_true_rewriter import *
 from rewriter.plusplus_rewriter import *
+from rewriter.if_without_else_rewriter import *
 
 path = "input-code/"
 dir_list = os.listdir(path)
@@ -24,7 +25,7 @@ print("Transforming files in '", path, "' :")
 #     f.write(unparse(tree))
 #     f.close()
 
-file = "code_test_plus.py"
+file = "code_test_ifelse.py"
 print(" ==== " + file + " ==== ")
 fileContent = open(path+file).read()
 tree = parse(fileContent)
