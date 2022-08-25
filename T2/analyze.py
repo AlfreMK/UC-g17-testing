@@ -27,7 +27,7 @@ print("Analyzing files in '", path, "' :")
 
 
 
-file = "code_test_01.py"
+file = "code_test_02.py"
 print(" ==== " + file + " ==== ")
 fileContent = open(path+file).read()
 tree = parse(fileContent)
