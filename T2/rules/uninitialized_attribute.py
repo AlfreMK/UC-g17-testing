@@ -42,7 +42,7 @@ class AttributeUsageVisitor(WarningNodeVisitor):
             self.variables_used[node.value.id] = True
         for var in self.variables:
             if self.variables_used[var] == False:
-                self.addWarning('UnusedVariableWarning', node.lineno, 'variable '+ var + ' was not used')
+                self.addWarning('NeverReadedVariable', node.lineno, 'variable '+ var + ' was not used')
 
         #####################
 
