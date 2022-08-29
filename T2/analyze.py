@@ -5,8 +5,13 @@ from rules.rule import *
 from rules.eval_used import *
 from rules.uncouple_method import *
 from rules.dummy_if import *
-#from rules.uninitialized_attribute import *
+
+from rules.uninitialized_attribute import *
+from rules.never_readed_variable import *
+
+# from rules.uninitialized_attribute import *
 from rules.dataclass import *
+
 
 path = "input-code/"
 dir_list = os.listdir(path)
@@ -28,6 +33,8 @@ print("Analyzing files in '", path, "' :")
 
 
 
+
+# file = "code_test_03.py"
 file = "code_test_data_class_01.py"
 print(" ==== " + file + " ==== ")
 fileContent = open(path+file).read()
