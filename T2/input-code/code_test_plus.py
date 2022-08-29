@@ -5,5 +5,6 @@ def PlusPlus(x):
 class Person:
     def PlusPlus(x):
         x = x + 1
+        y = 1
         y += 1
         return x

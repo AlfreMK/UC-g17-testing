@@ -29,7 +29,7 @@ file = "code_test_ifelse.py"
 print(" ==== " + file + " ==== ")
 fileContent = open(path+file).read()
 tree = parse(fileContent)
-print(dump(tree, indent=2))  ## para imprimir el arbol
+# print(dump(tree, indent=2))  ## para imprimir el arbol
 # we apply all rewriters in the file
 for commandClass in RewriterCommand.__subclasses__():    
     command = commandClass()

@@ -35,12 +35,12 @@ print("Analyzing files in '", path, "' :")
 
 
 # file = "code_test_03.py"
-file = "code_test_data_class_01.py"
+file = "code_test_03.py"
 print(" ==== " + file + " ==== ")
 fileContent = open(path+file).read()
 tree = parse(fileContent)
 warnings = []
-#print(dump(tree, indent=2))  ## para imprimir el arbol
+# print(dump(tree, indent=2))  ## para imprimir el arbol
 for ruleClass in Rule.__subclasses__():    
     newRule = ruleClass()
     result = newRule.analyze(tree)
