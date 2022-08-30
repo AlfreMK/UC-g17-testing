@@ -26,8 +26,8 @@ print("Transforming files in '", path, "' :")
 #     f.close()
 
 
-file = "IfWithoutElse/test_01.py"
-#file = "plusplus-input/test_01.py"
+# file = "plusplus-input/test_03.py"
+file = "IfWithoutElse/test_02.py"
 print(" ==== " + file + " ==== ")
 fileContent = open(path+file).read()
 tree = parse(fileContent)

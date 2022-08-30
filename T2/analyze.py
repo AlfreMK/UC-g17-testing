@@ -2,7 +2,7 @@ from ast import *
 import os
 from textwrap import indent
 from rules.rule import *
-# from rules.suspicious_variable_name import *
+from rules.suspicious_variable_name import *
 # from rules.eval_used import *
 # from rules.uncouple_method import *
 # from rules.dummy_if import *
@@ -12,6 +12,7 @@ from rules.rule import *
 
 # from rules.uninitialized_attribute import *
 from rules.dataclass import *
+# from rules.bonus import *
 
 
 path = "input-code/"
@@ -35,16 +36,16 @@ print("Analyzing files in '", path, "' :")
 
 
 
-file = "bonus02.py"
+# file = "bonus03.py"
 
 
 # file = "code_test_03.py"
 # file = "dataClass/test_01.py"
 
 
-# file = "suspiciousVariable/test_01.py"
-# file = "NeverReaded/code_test_03.py"
-# file = "dataClass/test_01.py"
+# file = "suspiciousVariable/test_03.py"
+# file = "NeverReaded/test_03.py"
+# file = "dataClass/test_04.py"
 
 
 print(" ==== " + file + " ==== ")
