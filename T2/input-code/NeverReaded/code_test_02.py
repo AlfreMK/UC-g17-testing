@@ -10,3 +10,10 @@ class Person:
         variable_used_1 = 200
         variable_used_2 = variable_used_1 + 100
         return variable_used_2
+    def example_for_args(self, a, b):
+        variable_used_1 = 200
+        variable_used_2 = variable_used_1 + 100
+        return variable_used_2
+    def example_without_return(self):
+        variable_used_1 = 200
+        variable_non_used_3 = variable_used_1 + 100

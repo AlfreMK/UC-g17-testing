@@ -2,11 +2,17 @@ from ast import *
 import os
 from textwrap import indent
 from rules.rule import *
-#from rules.eval_used import *
-#from rules.uncouple_method import *
-#from rules.dummy_if import *
-#from rules.uninitialized_attribute import *
-from rules.bonus import *
+# from rules.suspicious_variable_name import *
+# from rules.eval_used import *
+# from rules.uncouple_method import *
+# from rules.dummy_if import *
+
+# from rules.uninitialized_attribute import *
+# from rules.never_readed_variable import *
+
+# from rules.uninitialized_attribute import *
+from rules.dataclass import *
+
 
 path = "input-code/"
 dir_list = os.listdir(path)
@@ -28,7 +34,19 @@ print("Analyzing files in '", path, "' :")
 
 
 
+
 file = "bonus02.py"
+
+
+# file = "code_test_03.py"
+# file = "dataClass/test_01.py"
+
+
+# file = "suspiciousVariable/test_01.py"
+# file = "NeverReaded/code_test_03.py"
+# file = "dataClass/test_01.py"
+
+
 print(" ==== " + file + " ==== ")
 fileContent = open(path+file).read()
 tree = parse(fileContent)
