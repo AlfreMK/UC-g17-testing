@@ -3,12 +3,16 @@ from . rewriter import *
 
 class LiteralEvalTransformer(NodeTransformer):
     def visit_Call(self, node):
-        if node.func.id == 'eval':
-            return Call(func=Name(id='literal_eval', ctx=Load()), 
-                        args=node.args, 
-                        keywords=node.keywords)
-        else:
-            return node
+        transformedNode = NodeTransformer.generic_visit(self, node)
+        try:
+            if node.func.id == 'eval':
+                return Call(func=Name(id='literal_eval', ctx=Load()),
+                            args=transformedNode.args,
+                            keywords=transformedNode.keywords)
+            else:
+                return transformedNode
+        except AttributeError:
+            return transformedNode
 
 
 class LiteralEvalRewriterCommand(RewriterCommand):
