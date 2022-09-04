@@ -1,0 +1,1 @@
+listSum = [sum(1, 1)*i for i in range(10)]

@@ -49,12 +49,22 @@ class Profile:
     # instance method
     def __init__(self):
         self.functions_called=[]
-    def ins_record(self, cls, functionName, args):   
+        self.functions_called_dict = {}
+
+    def ins_record(self, cls, functionName, args):
+        if functionName in self.functions_called_dict:
+            self.functions_called_dict[functionName].append(args)
+        else:
+            self.functions_called_dict[functionName] = [args]
+
         self.functions_called.append(functionName)
     def printReport(self):
-        print("-- executed methods --")
-        for fun in self.functions_called:
-            print(fun)
+        print("-- methods that use the the same --")
+        for key in self.functions_called_dict:
+            # if an argument value is repeated print it
+            repeated = [ x for x in self.functions_called_dict[key] if self.functions_called_dict[key].count(x) > 1 ]
+            if len(repeated) == self.functions_called.count(key):
+                print(key, ":", repeated[0])
 
     
 def instrument(ast):
