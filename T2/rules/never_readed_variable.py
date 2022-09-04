@@ -15,6 +15,8 @@ class VariableNodeCounterVisitor(NodeVisitor):
     
     def visit_Name(self, node: Name):
         if node.id != 'self':
+            if node.id not in self.variableOcurrences:
+                self.variableOcurrences[node.id] = 0
             self.variableOcurrences[node.id] += 1
             self.variablePosition[node.id] = node.lineno
         NodeVisitor.generic_visit(self, node)

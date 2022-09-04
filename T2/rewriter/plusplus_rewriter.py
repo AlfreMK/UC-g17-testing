@@ -1,20 +1,49 @@
 from . rewriter import *
 
+# variable = variable + x
+# variable = x + variable
+###########################
+# variable += x
+###########################
 
 class PlusPlusTransformer(NodeTransformer):
-    ## El nombre visit_Assign es importante, si se coloca otro como visit_hola, no funcionara
     def visit_Assign(self, node):
         if isinstance(node, Assign):
             var = node.targets[0]
             try:
                 if isinstance(node.value.op, Add):
-                    if node.value.left.id == var.id and isinstance(node.value.right, Constant):
-                        return AugAssign(
+                    if isinstance(node.value.left, Name):
+                        if node.value.left.id == var.id:
+                            return AugAssign(
+                                        target=Name(id=var.id, ctx=Store()),
+                                        op=Add(),
+                                        value=node.value.right)
+                    elif isinstance(node.value.right, Name):
+                        if node.value.right.id == var.id:
+                            return AugAssign(
                                     target=Name(id=var.id, ctx=Store()),
                                     op=Add(),
-                                    value=node.value.right)
-            except:
-                return node
+                                    value=node.value.left)
+            except AttributeError:
+                pass
+            try:
+                if isinstance(node.value, BinOp):
+                    if node.value.left.value.id == "self":
+                        return AugAssign(
+                            target=Attribute(
+                            value=Name(id='self', ctx=Load()),
+                            attr='value',
+                            ctx=Store()),
+                            op=Add(),
+                            value=node.value.right)
+                elif isinstance(node.value.right, Name):
+                        if node.value.right.id == var.id:
+                            return AugAssign(
+                                    target=Name(id=var.id, ctx=Store()),
+                                    op=Add(),
+                                    value=node.value.left)
+            except AttributeError:
+                pass
         return node
 
 
