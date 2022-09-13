@@ -23,3 +23,24 @@ for file in dir_list:
     exec(compile(newTree, filename="<ast>", mode="exec"))
     # print the report
     Profile.getInstance().printReport()
+
+# file = "code2.py"
+# file = "code3.py"
+# file = "code4.py"
+# file = "code5.py"
+
+# print(" ==== " + file + " ==== ")
+# fileContent = open(path+file).read()
+# tree = parse(fileContent)
+# # clean info of the last profile
+# Profile.reset()
+# # we apply all rewriters in the file
+# newTree = instrument(tree)
+# # export in a new file, only to test
+# f = open("transformed-code/"+file, "w")
+# f.write(unparse(newTree))
+# f.close()
+# # evaluate the modified tree
+# exec(compile(newTree, filename="<ast>", mode="exec"))
+# # print the report
+# Profile.getInstance().printReport()

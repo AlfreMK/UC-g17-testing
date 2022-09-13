@@ -59,10 +59,13 @@ class Profile:
 
         self.functions_called.append(functionName)
     def printReport(self):
-        print("-- methods that use the the same --")
+        printed_method = 0
         for key in self.functions_called_dict:
             # if an argument value is repeated print it
             repeated = [ x for x in self.functions_called_dict[key] if self.functions_called_dict[key].count(x) > 1 ]
+            if len(repeated) > 0 and not printed_method:
+                print("-- Methods that use the same args --")
+                printed_method = 1
             if len(repeated) == self.functions_called.count(key):
                 print(key, ":", repeated[0])
 
