@@ -84,6 +84,28 @@ class TestDemo(TestCase):
         number.value = 60
         self.assertEqual(number.invariant(), False)
 
+    def test_check_increment(self):
+        auxList = []
+        for i in self.clock.numbers:
+            auxList.append(i.value)
+        
+        for i in range(10000):
+            self.clock.increment()
+
+            aux = len(self.clock.numbers) - 1
+            while aux >= 0:
+                newVal = (auxList[aux] + 1 + self.clock.numbers[aux].limit)
+                
+                if newVal % self.clock.numbers[aux].limit == 0:
+                    auxList[aux] = 0
+                else:
+                    auxList[aux] += 1
+                    break
+                
+                aux -= 1
+            
+            for i in range(len(self.clock.numbers)):
+                self.assertEqual(self.clock.numbers[i].value, auxList[i])
 
 # RUN MUTATESTS (inside clock-display) WITH :
 # mutatest -s . -t "pytest" -r 314
