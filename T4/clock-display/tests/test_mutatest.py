@@ -84,6 +84,14 @@ class TestDemo(TestCase):
         number.value = 60
         self.assertEqual(number.invariant(), False)
 
+    def test_oder_op(self):
+        number = self.clock.numbers[0]
+        newNumber = number.clone()
+        newNumber.limit = 0.4
+        newNumber.value = 1
+        newNumber.increase()
+        self.assertEqual(newNumber.value,  (1 + 0.4 + 1) % 0.4)
+
 
 # RUN MUTATESTS (inside clock-display) WITH :
 # mutatest -s . -t "pytest" -r 314
