@@ -1,4 +1,5 @@
 from src.clock_factory import *
+from src.clock_display import *
 from unittest import TestCase
 #import unittest # for skipping tests
 
