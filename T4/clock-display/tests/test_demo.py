@@ -12,6 +12,15 @@ class TestDemo(TestCase):
         self.clock = self.factory.create("hh:mm")
         self.clock_2 = self.factory_2.create("hh:mm:ss")
         self.clock_3 = self.factory_3.create("hh:mm:ss:mmmm")
+        self.environment_is_clean()
+
+    def environment_is_clean(self):
+        try:
+            number = NumberDisplay(2,5)
+            number.increase()
+            self.assertEqual(number.value, 3)
+        except AssertionError:
+            raise
 
     def test_factory_1(self):
         self.assertEqual(self.factory.create("hh:mm").str(), "00:00")
