@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
-    <title>Coverage for tests/test_mutatest.py: 92%</title>
+    <title>Coverage for tests\test_mutatest.py: 97%</title>
     <link rel="icon" sizes="32x32" href="favicon_32.png">
     <link rel="stylesheet" href="style.css" type="text/css">
     <script type="text/javascript" src="jquery.min.js"></script>
@@ -17,14 +17,14 @@
 <body class="pyfile">
 <div id="header">
     <div class="content">
-        <h1>Coverage for <b>tests/test_mutatest.py</b> :
-            <span class="pc_cov">92%</span>
+        <h1>Coverage for <b>tests\test_mutatest.py</b> :
+            <span class="pc_cov">97%</span>
         </h1>
         <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
         <h2 class="stats">
-            78 statements &nbsp;
-            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">72 run</button>
-            <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">6 missing</button>
+            73 statements &nbsp;
+            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">71 run</button>
+            <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">2 missing</button>
             <button type="button" class="exc show_exc shortkey_x button_toggle_exc" title="Toggle lines excluded">0 excluded</button>
         </h2>
     </div>
@@ -110,13 +110,13 @@
     <p id="t56" class="pln"><span class="n"><a href="#t56">56</a></span><span class="t">        <span class="com">#   src/display_number.py: (l: 3, c: 41) - mutation from None to False</span>&nbsp;</span><span class="r"></span></p>
     <p id="t57" class="run"><span class="n"><a href="#t57">57</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">NumberDisplay</span><span class="op">(</span><span class="num">0</span><span class="op">,</span><span class="num">60</span><span class="op">)</span><span class="op">.</span><span class="nam">__init__</span><span class="op">(</span><span class="num">0</span><span class="op">,</span><span class="num">60</span><span class="op">)</span><span class="op">,</span> <span class="key">None</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t58" class="pln"><span class="n"><a href="#t58">58</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t59" class="run"><span class="n"><a href="#t59">59</a></span><span class="t">    <span class="key">def</span> <span class="nam">test_increase_add_mod</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t60" class="pln"><span class="n"><a href="#t60">60</a></span><span class="t">        <span class="com"># mutatest:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t61" class="pln"><span class="n"><a href="#t61">61</a></span><span class="t">        <span class="com">#   src/display_number.py: (l: 9, c: 23) - mutation from &lt;class '_ast.Add'> to &lt;class '_ast.Mod'></span>&nbsp;</span><span class="r"></span></p>
-    <p id="t62" class="mis show_mis"><span class="n"><a href="#t62">62</a></span><span class="t">        <span class="nam">number</span> <span class="op">=</span> <span class="nam">NumberDisplay</span><span class="op">(</span><span class="num">0</span><span class="op">,</span><span class="num">60</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t63" class="mis show_mis"><span class="n"><a href="#t63">63</a></span><span class="t">        <span class="nam">number</span><span class="op">.</span><span class="nam">value</span> <span class="op">=</span> <span class="num">10</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t64" class="mis show_mis"><span class="n"><a href="#t64">64</a></span><span class="t">        <span class="nam">number</span><span class="op">.</span><span class="nam">increase</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t65" class="mis show_mis"><span class="n"><a href="#t65">65</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">number</span><span class="op">.</span><span class="nam">str</span><span class="op">(</span><span class="op">)</span><span class="op">,</span> <span class="str">"11"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t59" class="pln"><span class="n"><a href="#t59">59</a></span><span class="t">    <span class="com">#def test_increase_add_mod(self):</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t60" class="pln"><span class="n"><a href="#t60">60</a></span><span class="t">    <span class="com">#    # mutatest:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t61" class="pln"><span class="n"><a href="#t61">61</a></span><span class="t">    <span class="com">#    #   src/display_number.py: (l: 9, c: 23) - mutation from &lt;class '_ast.Add'> to &lt;class '_ast.Mod'></span>&nbsp;</span><span class="r"></span></p>
+    <p id="t62" class="pln"><span class="n"><a href="#t62">62</a></span><span class="t">    <span class="com">#    number = NumberDisplay(0,60)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t63" class="pln"><span class="n"><a href="#t63">63</a></span><span class="t">    <span class="com">#    number.value = 10</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t64" class="pln"><span class="n"><a href="#t64">64</a></span><span class="t">    <span class="com">#    number.increase()</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t65" class="pln"><span class="n"><a href="#t65">65</a></span><span class="t">    <span class="com">#    self.assertEqual(number.str(), "11")</span>&nbsp;</span><span class="r"></span></p>
     <p id="t66" class="pln"><span class="n"><a href="#t66">66</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t67" class="run"><span class="n"><a href="#t67">67</a></span><span class="t">    <span class="key">def</span> <span class="nam">test_increase_add_mod</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t68" class="pln"><span class="n"><a href="#t68">68</a></span><span class="t">        <span class="com"># mutatest:</span>&nbsp;</span><span class="r"></span></p>
@@ -184,7 +184,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.5</a>,
-            created at 2022-09-17 21:31 -0300
+            created at 2022-09-17 22:13 -0300
         </p>
     </div>
 </div>
