@@ -55,14 +55,7 @@ class TestDemo(TestCase):
         # mutatest:
         #   src/display_number.py: (l: 3, c: 41) - mutation from None to False
         self.assertEqual(NumberDisplay(0,60).__init__(0,60), None)
-    
-    def test_increase_add_mod(self):
-        # mutatest:
-        #   src/display_number.py: (l: 9, c: 23) - mutation from <class '_ast.Add'> to <class '_ast.Mod'>
-        number = NumberDisplay(0,60)
-        number.value = 10
-        number.increase()
-        self.assertEqual(number.str(), "11")
+
     
     def test_increase_add_mod(self):
         # mutatest:
