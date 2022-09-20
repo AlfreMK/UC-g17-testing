@@ -11,6 +11,15 @@ class TestDemo(TestCase):
         self.clock = self.factory.create("hh:mm")
         self.clock_2 = self.factory_2.create("hh:mm:ss")
         self.clock_3 = self.factory_3.create("hh:mm:ss:mmmm")
+        self.environment_is_clean()
+
+    def environment_is_clean(self):
+        try:
+            number = NumberDisplay(2,5)
+            number.increase()
+            self.assertEqual(number.value, 3)
+        except AssertionError:
+            raise
 
     def test_noneToFalse(self):
         # mutatest:
@@ -26,6 +35,11 @@ class TestDemo(TestCase):
         # mutatest:
         #   src/clock_display.py: (l: 4, c: 38) - mutation from None to False
         self.assertEqual(NumberDisplay.__init__.__annotations__["return"], None)
+    
+    def test_annotations_clock_factory(self):
+        # mutatest:
+        #   src/clock_display.py: (l: 4, c: 38) - mutation from None to False
+        self.assertEqual(ClockFactory.__init__.__annotations__["return"], None)
 
     def test_increment_gte(self):
         # mutatest:
@@ -41,14 +55,7 @@ class TestDemo(TestCase):
         # mutatest:
         #   src/display_number.py: (l: 3, c: 41) - mutation from None to False
         self.assertEqual(NumberDisplay(0,60).__init__(0,60), None)
-    
-    def test_increase_add_mod(self):
-        # mutatest:
-        #   src/display_number.py: (l: 9, c: 23) - mutation from <class '_ast.Add'> to <class '_ast.Mod'>
-        number = NumberDisplay(0,60)
-        number.value = 10
-        number.increase()
-        self.assertEqual(number.str(), "11")
+
     
     def test_increase_add_mod(self):
         # mutatest:
@@ -84,28 +91,26 @@ class TestDemo(TestCase):
         number.value = 60
         self.assertEqual(number.invariant(), False)
 
-    def test_check_increment(self):
-        auxList = []
-        for i in self.clock.numbers:
-            auxList.append(i.value)
-        
-        for i in range(10000):
-            self.clock.increment()
+    def test_oder_op(self):
+        number = self.clock.numbers[0]
+        newNumber = number.clone()
+        limit = 0.4
+        value = 1
+        newNumber.limit = limit
+        newNumber.value = value
+        newNumber.increase()
+        self.assertEqual(newNumber.value,  (value + limit + 1) % limit)
+    
+    def test_oder_op_2(self):
+        number = self.clock.numbers[0]
+        newNumber = number.clone()
+        limit = -1
+        value = -5
+        newNumber.limit = limit
+        newNumber.value = value
+        newNumber.increase()
+        self.assertEqual(newNumber.value,  (value + limit + 1) % limit)
 
-            aux = len(self.clock.numbers) - 1
-            while aux >= 0:
-                newVal = (auxList[aux] + 1 + self.clock.numbers[aux].limit)
-                
-                if newVal % self.clock.numbers[aux].limit == 0:
-                    auxList[aux] = 0
-                else:
-                    auxList[aux] += 1
-                    break
-                
-                aux -= 1
-            
-            for i in range(len(self.clock.numbers)):
-                self.assertEqual(self.clock.numbers[i].value, auxList[i])
 
 # RUN MUTATESTS (inside clock-display) WITH :
 # mutatest -s . -t "pytest" -r 314
